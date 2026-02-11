@@ -1,4 +1,4 @@
-# Dazong Chen - iOS Developer Portfolio
+# Kumo Maboroshi - iOS Developer Portfolio
 
 Personal homepage showcasing iOS applications.
 
@@ -16,4 +16,4 @@ Your essential companion for exploring China - discover cultural insights, trave
 maboroshi.appdev@gmail.com
 
 ## License
-© 2025 Dazong Chen. All rights reserved.
+© 2025 Kumo Maboroshi. All rights reserved.
