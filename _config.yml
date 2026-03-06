@@ -1,0 +1,23 @@
+title: Kumo Maboroshi
+description: "iOS apps and China travel guides by Kumo Maboroshi"
+url: "https://maboroshi-appdev.github.io"
+baseurl: ""
+
+permalink: /blog/:title/
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
