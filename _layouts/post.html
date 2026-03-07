@@ -133,10 +133,16 @@
             text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Table of Contents */
-        .toc {
+        /* Content layout wrapper (sidebar TOC + article) */
+        .content-wrapper {
             max-width: 760px;
-            margin: -20px auto 24px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Table of Contents — inline card (default / narrow screens) */
+        .toc {
+            margin: -20px 0 24px;
             padding: 24px 28px;
             background: linear-gradient(135deg, #fdf8ef, #faf5ea);
             border: 1px solid rgba(212, 168, 83, 0.3);
@@ -185,6 +191,59 @@
 
         .toc-list li.toc-active a { color: var(--accent); font-weight: 600; }
         .toc-list li.toc-active a .toc-num { color: var(--accent); }
+
+        /* Wide screen: sidebar TOC */
+        @media (min-width: 1300px) {
+            .toc {
+                position: sticky;
+                top: 80px;
+                float: left;
+                width: 220px;
+                margin: 0;
+                margin-left: -260px;
+                padding: 20px;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                border-right: 2px solid rgba(212, 168, 83, 0.2);
+                border-radius: 0;
+            }
+
+            .toc-title {
+                font-size: 0.8125rem;
+                margin-bottom: 16px;
+                color: var(--text-tertiary);
+            }
+
+            .toc-list {
+                grid-template-columns: 1fr;
+                gap: 2px;
+            }
+
+            .toc-list li a {
+                font-size: 0.8125rem;
+                padding: 6px 12px 6px 0;
+                gap: 8px;
+                border-radius: 6px;
+            }
+
+            .toc-list li a:hover {
+                background: rgba(212, 168, 83, 0.08);
+                padding-left: 8px;
+            }
+
+            .toc-list li.toc-active a {
+                color: var(--accent);
+                font-weight: 600;
+                background: rgba(192, 57, 43, 0.06);
+                padding-left: 8px;
+            }
+
+            .toc-list li a .toc-num {
+                font-size: 0.6875rem;
+                min-width: 18px;
+            }
+        }
 
         /* Article body */
         .article-body {
@@ -534,8 +593,9 @@
             .navbar { padding: 12px 20px; }
             .nav-links { gap: 20px; }
             .article-header { padding: 100px 20px 60px; }
-            .article-body { margin: 0 16px; padding: 32px 24px 40px; }
-            .toc { margin: -20px 16px 20px; }
+            .content-wrapper { margin: 0 16px; }
+            .article-body { padding: 32px 24px 40px; }
+            .toc { margin: -20px 0 20px; }
             .toc-list { grid-template-columns: 1fr; }
             .table-wrapper { margin: 16px -12px; border-radius: 8px; }
         }
@@ -564,14 +624,16 @@
         <p class="article-meta">{{ page.date | date: "%B %d, %Y" }}</p>
     </header>
 
-    <nav class="toc" id="toc" style="display:none;">
-        <p class="toc-title">In This Article</p>
-        <ol class="toc-list" id="toc-list"></ol>
-    </nav>
+    <div class="content-wrapper">
+        <nav class="toc" id="toc" style="display:none;">
+            <p class="toc-title">In This Article</p>
+            <ol class="toc-list" id="toc-list"></ol>
+        </nav>
 
-    <article class="article-body" id="article-body">
-        {{ content }}
-    </article>
+        <article class="article-body" id="article-body">
+            {{ content }}
+        </article>
+    </div>
 
     <div class="post-footer">
         <a href="/blog/" class="back-link">&larr; All posts</a>
